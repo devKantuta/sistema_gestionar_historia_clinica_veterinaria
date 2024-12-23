@@ -1,0 +1,237 @@
+
+<app-nav></app-nav>
+<section class="container_gral">
+  <!-- {{formNewData.value | json}} -->
+  <div class="container_raza">
+    <!-- FORMULARIO DE NEW o ADD -->
+    <div class="container_new_raza" *ngIf="onShowComponentRaza">
+      <button type="button" class="btn_close" (click)="closeForm()" >X</button>
+      <h2 class="title_new_raza">Nueva Ficha M. </h2>
+
+      <form 
+      class="form_raza" 
+      [formGroup]="formNewData" 
+      (ngSubmit)="submitDataForm()"
+      id="createFormNew"
+      >
+        <!-- Selecionando Mascota -->
+        <div class=" box_input box_select">
+          <label for="mascota">Mascota:</label>
+          <select name="mascota" id="mascota" formControlName="mascota">
+            <option value="" [selected]="ok" disabled >seleccione</option>
+            <option value="{{mascota.id}}" *ngFor="let mascota of listDataMascotas" >
+              {{mascota.nombre}}
+            </option>
+          </select>
+        </div>
+        <!-- Seleccionando cliente de la mascota -->
+        <div class=" box_input box_select">
+          <label for="cliente">Cliente:</label>
+          <select name="cliente" id="cliente" formControlName="cliente"  (click)="getNameMascota()" >
+            <option value="" [selected]="ok" disabled >seleccione</option>
+            <option value="{{data.id}}" *ngFor="let data of listDataClientes" >
+              {{data.cliente}}
+            </option>
+          </select>
+        </div>
+
+        
+        <!-- fecha registro -->
+        <div class=" box_input box_select">
+          <label for="fecha_reg">Fecha:</label>
+          <input type="date"  id="fecha_reg" formControlName="fecha_reg" >
+        </div>
+
+        <!-- tipo de sangre -->
+        <div class=" box_input box_select">
+          <label for="t_sangre">tipo de sangre:</label>
+          <select name="t_sangre" id="t_sangre" formControlName="t_sangre"  >
+            <option value="" [selected]="true" disabled >seleccione</option>
+            <option value="{{data.nombre}}" *ngFor="let data of tiposDeSangre" >
+              {{data.tipo}}
+            </option>
+          </select>
+        </div>
+
+        <!-- Alergias -->
+        <div class=" box_input box_select">
+          <label for="alergia">Alergias:</label>
+          <input type="text"  id="alergia" formControlName="alergia" >
+        </div>
+
+        <!-- btn_crear hc y input hc -->
+        <div class="box_select">
+          <div class=" box_input">
+            <button  type="button" class="btn btn_hc" (click)="crear_hc()">Crear Ficha</button>
+          </div>
+          <div class=" box_input">
+            <input type="text"  id="num_hc" formControlName="num_hc">
+          </div>
+        </div>
+
+        <!-- Validaciones de los campos -->
+        <div class="message_error" 
+        [hidden]="(mascota?.valid || mascota?.pristine) && 
+                  (num_hc?.valid ||num_hc?.pristine)&&
+                  (fecha_reg?.valid ||fecha_reg?.pristine)&&
+                  (cliente?.valid ||cliente?.pristine)
+                  ">
+          Rellene todos los campos🧐..!
+        </div>
+  
+        <button type="submit" class="btn btn-primary btn_new_raza" [disabled]="formNewData.invalid">
+          Guardar
+        </button>
+      </form>
+    
+    </div>
+    <!-- FORM TO UPDATE RAZA -->
+    <div class="container_new_raza" *ngIf="showUpdateComponent">
+      <button type="button" class="btn_close d-print-none" (click)="closeFormRazaUpdate()" >X</button>
+      <h2 class="title_new_raza">Editar Mascota</h2>
+
+      <form class="form_raza" 
+      [formGroup]="formNewData" 
+      #formUpdate
+      (ngSubmit)="submitUpdateData()"
+      id="updateDataForm"
+      >
+        
+        <!-- Selecionando Mascota -->
+        <div class=" box_input box_select">
+          <label for="mascota">Mascota:</label>
+          <select name="mascota" id="mascota" formControlName="mascota">
+            <option value="" [selected]="ok" disabled >seleccione</option>
+            <option value="{{mascota.id}}" *ngFor="let mascota of listDataMascotas" >
+              {{mascota.nombre}}
+            </option>
+          </select>
+        </div>
+        <!-- Seleccionando cliente de la mascota -->
+        <div class=" box_input box_select">
+          <label for="cliente">Cliente:</label>
+          <select name="cliente" id="cliente" formControlName="cliente"  (click)="getNameMascota()" >
+            <option value="" [selected]="ok" disabled >seleccione</option>
+            <option value="{{data.id}}" *ngFor="let data of listDataClientes" >
+              {{data.cliente}}
+            </option>
+          </select>
+        </div>
+
+        
+        <!-- fecha registro -->
+        <div class=" box_input box_select">
+          <label for="fecha_reg">Fecha:</label>
+          <input type="date"  id="fecha_reg" formControlName="fecha_reg" >
+        </div>
+
+        <!-- tipo de sangre -->
+        <div class=" box_input box_select">
+          <label for="t_sangre">tipo de sangre:</label>
+          <select name="t_sangre" id="t_sangre" formControlName="t_sangre"  >
+            <option value="" [selected]="true" disabled >seleccione</option>
+            <option value="{{data.nombre}}" *ngFor="let data of tiposDeSangre" >
+              {{data.tipo}}
+            </option>
+          </select>
+        </div>
+
+        <!-- Alergias -->
+        <div class=" box_input box_select">
+          <label for="alergia">Alergias:</label>
+          <input type="text"  id="alergia" formControlName="alergia" >
+        </div>
+
+        <!-- btn_crear hc y input hc -->
+        <div class="box_select">
+          <div class=" box_input">
+            <button  type="button" class="btn btn_hc" (click)="crear_hc()" disabled>Crear Ficha</button>
+          </div>
+          <div class=" box_input">
+            <input type="text"  id="num_hc" formControlName="num_hc">
+          </div>
+        </div>
+
+        <!-- Validaciones de los campos -->
+        <div class="message_error" 
+        [hidden]="(mascota?.valid || mascota?.pristine) && 
+                  (num_hc?.valid ||num_hc?.pristine)&&
+                  (fecha_reg?.valid ||fecha_reg?.pristine)&&
+                  (cliente?.valid ||cliente?.pristine)
+                  ">
+          Rellene todos los campos🧐..!
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn_new_raza" [disabled]="formNewData.invalid">
+          Guardar
+        </button>
+      </form>
+    
+    </div>
+
+    <!-- CONTENIDO DE LA TABLA -->
+    <div class="content_raza">
+      <div class="box_search">
+        <!-- BOTON ADD -->
+        <button class="btn btn_add" (click)="btnAddData()">Agregar</button>
+        <!-- CONTENIDO DEL INPUT SEARCH -->
+        <div class="search">
+          <input class="form-control input_search" 
+            type="search" 
+            placeholder="Search" 
+            aria-label="Search"
+            [(ngModel)]="textSearch"
+          >
+          <ion-icon name="search" class="icon"></ion-icon>
+        </div>
+      </div>
+
+      <h2 class="title_raza">FICHAS MEDICAS</h2>
+  
+      <table class="table table-bordered">
+        <!-- Encabezado de la tabla -->
+          <thead class="table_head">
+            <tr>
+              <th scope="col" class="th_id">Cliente</th>
+              <th scope="col" class="th_id">Mascota</th>
+              <th scope="col" class="th_id">Raza</th>
+              <th scope="col" class="th_id">T-Sangre</th>
+              <th scope="col" class="th_id">Alergia</th>
+              <th scope="col" class="th_id">Ficha</th>
+              <th scope="col" class="th_id">Fecha registro</th>
+              <th scope="col" class="th_id">Setting</th>
+            </tr>
+          </thead>
+          <!-- Cuerpo de la tabla -->
+          <tbody >
+            <tr *ngFor="let data of listData | filterMascota:textSearch" >
+              <!-- <th scope="row" class="th_id_1">{{data.id}}890</th> -->
+              <th scope="row" class="th_id_1">{{data.cliente}}</th>
+              <td colspan="1" class="td_row">{{data.mascota}}</td>
+              <td colspan="1" class="td_row">{{data.raza}}</td>
+              <td colspan="1" class="td_row">{{data.t_sangre}}</td>
+              <td colspan="1" class="td_row">{{data.alergia}}</td>
+              <td colspan="1" class="td_row">{{data.num_hc}}</td>
+              <td colspan="1" class="td_row">{{data.fecha_reg | date:"shortDate"}}</td>
+              
+              
+              <td class="box_btn">
+                <button class="btn btn_see_log" (click)=" printData(data)">
+                  <ion-icon name="document-text"></ion-icon> 
+                </button>
+                <button class="btn btn_reload" (click)="btnUpdateDataIcon(data)">
+                  <ion-icon name="sync"></ion-icon>
+                </button>
+                <button class="btn btn_red" (click)="deleteDataTable(data.id)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+    
+  </div>
+
+
+</section>

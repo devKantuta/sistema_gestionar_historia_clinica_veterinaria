@@ -1,0 +1,60 @@
+
+<div class="container_gral">
+  
+  <app-nav></app-nav>  
+
+  <section class="container_gral">
+
+    <!-- <div class="container">
+      <article class="box">
+        <div class="breed_img">
+          <div class="imgBx" style="--i:1;">
+            <img src="assets/images/breed_1.jpg" alt="">
+          </div>
+    
+          <div class="imgBx" style="--i:2;">
+            <img src="/assets/images/breed_2.jpg" alt="">
+          </div>
+    
+          <div class="imgBx" style="--i:3;">
+            <img src="assets/images/breed_3.jpg" alt="">
+          </div>
+    
+          <div class="imgBx" style="--i:4;">
+            <img src="assets/images/breed_4.jpg" alt="">
+          </div>
+    
+          <div class="imgBx" style="--i:5;">
+            <img src="assets/images/breed_5.jpg" alt="">
+          </div>
+    
+          <div class="imgBx" style="--i:6;">
+            <img src="assets/images/breed_6.jpg" alt="">
+          </div>
+    
+          <div class="imgBx" style="--i:7;">
+            <img src="assets/images/breed_7.jpg" alt="">
+          </div>
+        </div>
+      </article>
+    </div> -->
+    <!--   <div class="cuadrado" id="btn1"><h3>DevKantuta.com</h3></div> -->
+    <div class="container_padre">
+      <div class="container1">
+        <div
+          *ngFor="let panel of panels; let i = index"
+          class="panel"
+          [class.active]="i === activePanelIndex"
+          [style.background-image]="'url(' + panel.imageUrl + ')'"
+          (click)="setActivePanel(i)"
+        >
+          <!-- <h3>{{ panel.title2 }}</h3> -->
+          
+        </div>
+      </div>
+
+
+    </div>
+    
+  </section>
+</div>

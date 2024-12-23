@@ -1,0 +1,138 @@
+
+<app-nav></app-nav>
+<section class="container_gral">
+  <div class="container_raza">
+    <!-- FORMULARIO DE NEW RAZA -->
+    <div class="container_new_raza" *ngIf="onShowComponentRaza">
+      <button type="button" class="btn_close" (click)="closeFormRaza()" >X</button>
+      <h2 class="title_new_raza">Nueva Raza</h2>
+
+      <form class="form_raza" [formGroup]="formNewData" (ngSubmit)="submitDataForm()">
+        <div class=" box_input">
+          <label for="nombre"><nav>Nombre Raza</nav></label>
+          <input type="text" class="" id="nombre" formControlName="nombre" >
+        </div>
+
+        <div class=" box_input">
+          <label for="descripcion">Descripcion</label>
+          <input type="text" class="" id="descripcion" formControlName="descripcion" >
+        </div>
+        <!-- Seleccion de ESPECIE -->
+        <div class="box_input">
+          <label for="especie">Seleccione Especie</label>
+          <select id="especie" formControlName="id_especie">
+            <option value="" selected disabled> Seleccione</option>
+            <option *ngFor="let especie of listEspecies" [value]="especie.id">
+              {{ especie.nombre }}
+            </option>
+          </select>
+        </div>
+        
+        <div class="message_error" 
+        [hidden]="(nombre?.valid || nombre?.pristine) && 
+                  (descripcion?.valid ||descripcion?.pristine)">
+          Rellene todos los campos🧐..!
+        </div>
+  
+        <button type="submit" class="btn btn-primary btn_new_raza" [disabled]="formNewData.invalid">
+          Guardar
+        </button>
+      </form>
+    
+    </div>
+    <!-- FORM TO UPDATE RAZA -->
+    <div class="container_new_raza" *ngIf="showUpdateComponent">
+      <button type="button" class="btn_close" (click)="closeFormRazaUpdate()" >X</button>
+      <h2 class="title_new_raza">Update Raza</h2>
+
+      <form class="form_raza" [formGroup]="formNewData" (ngSubmit)="submitUpdateData()">
+
+        <div class=" box_input">
+          <label for="nombre"><nav>Nombre Raza</nav></label>
+          <input type="text" id="nombre" formControlName="nombre">
+          
+        </div>
+
+        <div class=" box_input">
+          <label for="descripcion">Descripcion</label>
+          <input type="text" id="descripcion" formControlName="descripcion">
+        </div>
+        <!-- select de tipo de ESPECIE -->
+        <div class="box_input">
+          <label for="especie">Seleccione una especie:</label>
+          <select id="especie" formControlName="id_especie">
+            <option value="" selected disabled>seleccione</option>
+            <option *ngFor="let especie of listEspecies" [value]="especie.id">
+              {{ especie.nombre }}
+            </option>
+          </select>
+        </div>
+
+        <div class="message_error" 
+        [hidden]="(nombre?.valid || nombre?.pristine) && 
+                  (descripcion?.valid ||descripcion?.pristine)">
+          Rellene todos los campos🧐..!
+        </div>
+  
+        <button type="submit" class="btn btn-primary btn_new_raza" [disabled]="formNewData.invalid">
+          Guardar
+        </button>
+      </form>
+    
+    </div>
+
+
+
+
+    <!-- CONTENIDO DE LA TABLA -->
+    <div class="content_raza">
+      <div class="box_search">
+        <!-- BOTON ADD -->
+        <button class="btn btn_raza btn_add" (click)="showFormRaza()">Agregar</button>
+        
+        <!-- CONTENIDO DEL INPUT SEARCH -->
+        <div class="search">
+          <input class="form-control input_search" 
+            type="search" 
+            placeholder="Search" 
+            aria-label="Search"
+            [(ngModel)]="textSearch"
+          >
+          <ion-icon name="search" class="icon"></ion-icon>
+        </div>
+      </div>
+      <h2 class="title_raza">RAZAS</h2>
+  
+      <table class="table table-bordered">
+          <thead class="table_head">
+            <tr>
+              <th scope="col" class="th_id">#</th>
+              <th scope="col" class="th_id">Nombre</th>
+              <th scope="col" class="th_id">Descripcion</th>
+              <th scope="col" class="th_id">Especie</th>
+              <th scope="col" class="th_id">Setting</th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let raza of listData | filter:textSearch" >
+              <th scope="row" class="th_id_1">{{raza.id}}025</th>
+              <td colspan="1" class="td_row">{{raza.nombre}}</td>
+              <td class="td_row">{{raza.descripcion}}</td>
+              <td class="td_row">{{raza.especie}}</td>
+              <td class="box_btn">
+                <button class="btn btn_reload" (click)="btnUpdateDataIcon(raza)">
+                  <ion-icon name="sync"></ion-icon>
+                </button>
+                <button class="btn btn_red" (click)="deleteDataTable(raza.id)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+    
+  </div>
+
+  
+</section>

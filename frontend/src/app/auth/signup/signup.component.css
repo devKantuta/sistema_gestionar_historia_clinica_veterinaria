@@ -1,0 +1,13 @@
+.hijo{
+  border-radius: 7px;
+  padding: 10px;
+  background: rebeccapurple;
+  color: #f1ecec;
+}
+
+p:first-child{
+  border: 2px dotted ;
+  border-radius: 7px;
+  cursor: pointer;
+  text-align: center;
+}

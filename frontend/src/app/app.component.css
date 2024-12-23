@@ -1,0 +1,21 @@
+/* main{
+  border: 2px solid red;
+  min-height: 100dvh;
+  min-width: 100dvw;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding-top: 100px;
+} */
+
+.container_main{
+/*   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; */
+  height: 100vh;
+  width: 100%;
+  background: var(--screen-color);
+  font-family: sans-serif;
+  padding: 20px;
+}
+

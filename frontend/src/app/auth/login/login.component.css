@@ -1,0 +1,264 @@
+
+.container{
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: var(--border-auto1); */
+  position: relative;
+}
+.message_api{
+  background: #000;
+  padding: 1em;
+  border-radius: 10px 0 10px;
+  position: absolute;
+  top: 84%;
+  left: 20%;
+  z-index: 30;
+  color: #42a948;
+
+}
+.container_form{
+  
+  max-width: 850px;
+  width: 100%;
+  background: var(--color-white);
+  padding: 40px 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  perspective: 2700px;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  /*   justify-content: center;
+  align-items: center; */
+  
+}
+.container_form .cover{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 50%;
+  /* background: red; */
+  transition: all 1s ;
+  transform-style: preserve-3d;
+  transform-origin: left;
+  z-index: 10;
+
+}
+
+.container_form .cover::before{
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: var(--screen-color);
+  opacity: .5;
+  
+  
+}
+#flip{display: none;}
+
+.container_form #flip:checked ~ .cover{
+  transform: rotateY(-180deg);
+}
+.container_form .cover .cover_front img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 12;
+  backface-visibility: hidden;
+}
+
+
+form{
+  height: 100%;
+  width: 100%;
+  background: var(--color-white);
+  /* border: var(--border-auto1); */
+}
+.form_content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form_content .login_form,
+.form_content .signup_form{
+  width: calc(100% / 2 - 25px);
+  /* border: 2px solid sienna; */
+}
+.container_form .login_form,
+.container_form .signup_form{
+  /* width: calc(100% / 2 -25px); */
+  width: calc(100%);
+}
+
+form .form_content .title{
+  position: relative;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+form .form_content .title::before{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 25px;
+  background: var(--screen-color);
+}
+
+form .form_content .signup_form .title::before{
+  width: 20px;
+}
+.inputs_box{
+  padding: 20px;
+  /* border: 2px solid #000; */
+  /* background: #000; */
+  width: 100%;
+}
+form .form_content .inputs_box{
+  margin-top: 30px;
+}
+form .form_content .login_form .link_forgot{
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+}
+form .form_content .login_form .link_forgot:hover{
+  color: var(--screen-color2);
+  text-decoration: underline;
+  font-weight: 600;
+}
+form .form_content .input_box{
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  margin: 10px 0;
+  
+}
+
+form .form_content .input_box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-bottom: 2px solid var(--black-rgba);
+  transition: all .3s;
+}
+
+form .form_content .input_box input:focus,
+form .form_content .input_box input:valid{
+  border-color: var(--screen-color);
+}
+form .form_content .input_box ion-icon{
+  position: absolute;
+  color: var(--screen-color);
+  font-size: 17px;
+}
+form .form_content .text{
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  text-wrap: nowrap;
+  
+}
+form .form_content .btn_form_send{
+  margin-top: 40px;
+  
+}
+
+form .form_content .btn_form_send input{
+  color: var(--color-white);
+  background: var(--screen-color);
+  border-radius: 6px;
+  padding: 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .4s;
+  
+}
+form .form_content .btn_form_send input:disabled{
+  opacity: 0.5;
+}
+
+form .form_content .btn_form_send input:hover:not(:disabled){
+  /* background: var(--screen-color2); */
+  box-shadow: 0 0 10px 2px #333;
+}
+
+form .form_content label{
+  color: var(--screen-color2);
+  cursor: pointer;
+}
+form .form_content label:hover{
+  /* font-size: 12px; */
+  text-decoration: underline;
+  font-weight: 600;
+  
+}
+
+@media (max-width:730px) {
+  .container_form .cover{
+    display: none;
+  }
+  .container_form{
+    width: 100%;
+    display: grid;
+    place-content: center;
+    
+  }
+  .form_content .login_form,
+  .form_content .signup_form{
+    width: 100%;
+    /* border: var(--border-auto); */
+    box-shadow: 0 0 5px var(--screen-color);
+    padding: 5px;
+    border-radius: 7px;
+  }
+
+  .form_content .signup_form{
+    display: none;
+  }
+  /* .form_content .login_form{display: none;} */
+  .container_form #flip:checked ~ form .signup_form{
+    display: block;
+  }
+
+  .container_form #flip:checked ~ form .login_form{
+    display: none;
+  }
+}
+
+.message_error{
+  color :rgb(240, 50, 50);
+  margin-bottom: 3px;
+}
+
+/* es esto para todos los inputs */
+/* .ng-valid:not(form).ng-touched{
+  border-bottom: 5px solid #42a948;
+}
+.ng-invalid:not(form).ng-touched{
+  border-left: 5px solid #a94442;
+} */
+input.ng-valid.ng-touched{
+  border-left: 5px solid #42a948;
+  
+  
+}
+
+input.ng-invalid.ng-touched{
+  
+  border-left: 5px solid #a94442;
+  
+}

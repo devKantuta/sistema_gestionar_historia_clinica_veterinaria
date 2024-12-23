@@ -1,0 +1,88 @@
+
+
+.container_template{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  width: 100%;
+  height: 100vh;
+  margin:  0 auto;
+  background: #eff0f8;
+  
+}
+
+form{
+  border-radius: 7px;
+  box-shadow: 1px 0px 5px var(--screen-color);
+  min-height: 400px;
+  min-width: 270px;
+  padding: 20px;
+  /* border: var(--border-auto); */
+
+}
+.section_img_form{
+  /* border: var(--border-auto); */
+  width: 100%;
+  height: 30%;
+  display: grid;
+  place-content: center;
+}
+.section_content_form{
+  /* border: var(--border-auto1); */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  
+}
+.box_img{
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--screen-color);
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  
+}
+.box_img ion-icon{
+ font-size: 50px;
+ color: var(--primary-color);
+}
+.box_input{
+  width: 100%;
+  /* border: var(--border-auto); */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.box_input input{
+  padding: 2% 5%;
+}
+.btn_send{
+  /* border: var(--border-auto); */
+  background: var(--primary-color1);
+  color: #fff;
+  padding: 0.5em 1em;
+  border-radius: 7px;
+  border: none;
+  transition: .4s;
+}
+.btn_send:hover:not(:disabled){
+  box-shadow: 0px 2px 5px #082370;
+}
+.btn_send:disabled{
+  opacity: 0.7;
+}
+.message_error{
+  border: 1px solid #db5050;
+  padding: 0.3em 1em;
+  color: rgb(206, 82, 82);
+  border-radius: 4px;
+  font-size: 12px;
+}
+.message_error span{
+  font-size: 1.5em;
+  margin-right: 5px;
+}

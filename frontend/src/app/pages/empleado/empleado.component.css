@@ -1,0 +1,240 @@
+.container_gral{
+  z-index: 10;
+  /* background: linear-gradient(rgba(5,5,12,.1) ,rgba(5,5,12,.3)), 
+  url('/assets/images/background.jpg'); */
+  position: relative;
+  &::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background:url('/assets/images/background.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    opacity: .7;
+  }  
+}
+.container_raza{
+  /* border: var(--border-auto); */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* padding: 20px; */
+  position: relative;
+
+}
+.content_raza{
+  /* border: var(--border-auto); */
+  width: 96%;
+  padding: 20px;
+  box-shadow: 2px 0 5px #0b0b36;
+  border-radius: 5px;
+  position: relative;
+}
+.box_search{
+  display: flex; 
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+.box_search .btn_add{
+  width: 20%;
+  letter-spacing: 2px;
+  background: rgb(28, 28, 126);
+  box-shadow: 1px 1px 5px var(--screen-color);
+}
+
+.box_search .input_search{
+  box-shadow: 0 0 5px var(--screen-color);
+  border: 1px solid var(--screen-color1);
+  width: 420px;
+  padding-left: 30px;
+}
+.box_search .input_search:focus{
+  border: 2px solid var(--screen-color);
+}
+
+
+.search{
+  position: relative;
+}
+.search .icon{
+  position: absolute;
+  top: 50%;
+  left: 1%;
+  transform: translate(-1%, -50%);
+  color: var(--screen-color1);
+  font-size: 20px;
+}
+
+
+
+.title_raza{
+  text-align: center;
+  font-family: 'Franklin Gothic Medium';
+  color: var(--text-color);
+  color: #1d0d3a;
+  text-shadow: 0 3px 4px rgba(37, 5, 124, 0.6);
+  margin-top: 20px;
+  border-top: 1px solid #353131;
+  letter-spacing: 2px;
+}
+
+.table{
+  border: 1px solid var(--screen-color);
+  /* max-width: 900px; */
+  width: 100%;
+  font-size: 12px;
+}
+.table_head{
+  border: 2px solid var(--screen-color);
+  
+}
+.btn{
+  background: rgb(9, 7, 134);
+  color: #fff;
+}
+.btn_red{
+  background: var(--color-red);
+}
+.btn_reload{
+  background: rgb(29, 95, 100);
+}
+.th_id{
+  text-align: center;
+  color: #fff;
+  background: var(--screen-color1);
+  
+}
+.th_id_1{
+  text-align: center;
+  color: #0b0b36;
+}
+.td_row{
+  color: #0b0b36;
+  
+}
+.box_btn{
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  
+}
+
+
+.box_btn button:hover ion-icon{
+  scale: 1.2;
+}
+
+/* formulario raza */
+.container_new_raza{
+  
+  background: rgba(0, 0, 0 ,.6);
+  box-shadow: 1px 1px 7px var(--screen-color);
+  display: grid;
+  place-content: center;
+  position: absolute;
+  width: 400px;
+  padding: 1em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% ,-50%);
+  border-radius: 4px;
+  z-index: 15;
+}
+.btn_close{
+  position: absolute;
+  width: 40px;
+  top: 20px;
+  right: 20px;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5em 0;
+  background: var(--color-red);
+  color: #fff;
+  font-weight: 700;
+}
+.title_new_raza{
+  border-radius: 10px 0 10px;
+  background: var(--screen-color1);
+  
+  padding: 10px;
+  width: 60%;
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.3rem;
+  text-align: center;
+}
+.form_raza{
+  /* border: var(--border-auto); */
+  padding: 20px;
+  width: 350px;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  z-index: 10;
+  box-shadow: 0 0 5px var(--screen-color);
+}
+.box_input{
+  margin-bottom: 5px;
+  width: 100%;
+  
+}
+
+.box_input label{
+  font-weight: 600;
+  width: 100%;
+  color: var(--text-color);
+  font-size: 13px;
+}
+.box_input input{
+  width: 100%;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  border: 1px solid var(--screen-color);
+  
+}
+
+.box_input input:focus{
+  color: var(--screen-color1);
+  outline-color: var(--screen-color);
+}
+.box_selected{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.btn_new_raza{
+  margin-top: 5px;
+  width: 90%;
+  letter-spacing: 2px;
+  background: var(--screen-color);
+}
+
+.btn_new_raza:disabled{
+  opacity: 0.3;
+  
+}
+
+.message_error{
+  color: rgb(161, 54, 54);
+}
+
+@media (max-width:900px) {
+  .box_search{
+    flex-direction: column;
+  
+  }
+  .box_search .btn_add{
+    width: 50%;
+  }
+}

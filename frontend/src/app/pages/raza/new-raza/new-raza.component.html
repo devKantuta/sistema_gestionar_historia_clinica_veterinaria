@@ -1,0 +1,25 @@
+<div class="container_new_raza" *ngIf="onShowComponentRaza">
+  <button type="button" class="btn_close" (click)="closeFormRaza()" >X</button>
+  <h2 class="title_new_raza">Nueva Raza</h2>
+  <form class="form_raza" [formGroup]="formRaza" (ngSubmit)="submitRaza()">
+    <div class=" box_input">
+      <label for="nameraza"><nav>Nombre Raza</nav></label>
+      <input type="text" class="" id="nameraza" formControlName="nameraza" >
+      
+    </div>
+    <div class=" box_input">
+      <label for="desc">Descripcion</label>
+      <input type="text" class="" id="desc" formControlName="description" >
+    </div>
+    <div class="message_error" 
+    [hidden]="(nameraza?.valid || nameraza?.pristine) && 
+              (description?.valid ||description?.pristine)">
+      Rellene todos los campos🧐..!
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="formRaza.invalid">
+      Guardar
+    </button>
+  </form>
+  
+</div>

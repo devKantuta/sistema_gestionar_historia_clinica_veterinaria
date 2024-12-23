@@ -1,0 +1,103 @@
+
+<app-nav></app-nav>
+<section class="container_gral">
+  <!-- {{formNewData.value | json}} -->
+  <div class="container_raza">
+
+    <!-- CONTENIDO DE LA TABLA -->
+    <div class="content_raza">
+      <div class="form_reporte">
+        <form class="form_raza" [formGroup]="formNewData" (ngSubmit)="submitDataForm()">
+          <!-- Seleccion de ESPECIE -->
+          <!-- <div class="box_input">
+            <label for="empleado">Seleccione Veterinario</label>
+            <select id="empleado" formControlName="id_empleado">
+              <option value="" selected disabled> Seleccione</option>
+              <option *ngFor="let empleado of listEmpleados" [value]="empleado.id_empleado">
+                {{ empleado.nombre }}
+              </option>
+            </select>
+          </div> -->
+          <div class=" box_input">
+            <label for="fecha_ini"><nav>Fecha Desde:</nav></label>
+            <input type="date" class="" id="fecha_ini" formControlName="fecha_ini" >
+          </div>
+
+          <div class=" box_input">
+            <label for="fecha_fin">Fecha Hasta:</label>
+            <input type="date" class="" id="fecha_fin" formControlName="fecha_fin" >
+          </div>
+          
+          
+          <div class="message_error" 
+          [hidden]=" 
+                    (fecha_ini?.valid ||fecha_ini?.pristine)&& 
+                    (fecha_fin?.valid ||fecha_fin?.pristine)">
+            Rellene todos los campos🧐..!
+          </div>
+    
+          <button type="submit" class="btn btn-primary btn_new_raza" [disabled]="formNewData.invalid" (click)="showmeBtn()">
+            Generar
+          </button>
+        </form>
+      </div>
+      <hr>
+      <!-- para buscar  -->
+     <!--  <div class="box_search">
+        <button class="btn btn_raza btn_add" (click)="showFormRaza()">Agregar</button>
+        
+        
+        <div class="search">
+          <input class="form-control input_search" 
+            type="search" 
+            placeholder="Search" 
+            aria-label="Search"
+            [(ngModel)]="textSearch"
+          >
+          <ion-icon name="search" class="icon"></ion-icon>
+        </div>
+      </div> -->
+      
+      <h2 class="title_raza">REPORTE POR GENERAL</h2>
+  
+      <table class="table table-bordered">
+          <thead class="table_head">
+            <tr>
+              <th scope="col" class="th_id">veterinario</th>
+              <th scope="col" class="th_id">mascota</th>
+              <th scope="col" class="th_id">fecha</th>
+              <th scope="col" class="th_id">peso</th>
+              <th scope="col" class="th_id">temperatura</th>
+              <th scope="col" class="th_id">motivo</th>
+              <th scope="col" class="th_id">diagnostico</th>
+              <th scope="col" class="th_id">tratamiento</th>
+              <th scope="col" class="th_id">precio</th>
+              <!-- <th scope="col" class="th_id">Setting</th> -->
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let data of listData | filter:textSearch" >
+
+              <td scope="row" class="th_id_1">{{data.veterinario}}</td>
+              <td scope="row" class="th_id_1">{{data.mascota}}</td>
+              <td scope="row" class="th_id_1">{{data.fecha_reg |date:"shortDate"}}</td>
+              <td colspan="1" class="td_row">{{data.peso}}Kg</td>
+              <td class="td_row">{{data.temperatura}}°C</td>
+              <td class="td_row">{{data.motivo}}</td>
+              <td class="td_row">{{data.diagnostico}}</td>
+              <td class="td_row">{{data.tratamiento}}</td>
+              <td class="td_row">{{data.precio}}</td>
+            </tr>
+          </tbody>
+      </table>
+      <div class="content_imprimir"[hidden]="(showme)" ><!--  -->
+        <button type="button" class="btn" (click)="printData(listData)"  >Imprimir</button>
+        <button disabled="disabled" class="btn btn_precio_total">Recaudado = {{precio_Total}}Bs</button>
+      </div>
+  </div>
+    
+  </div>
+
+  
+</section>
+

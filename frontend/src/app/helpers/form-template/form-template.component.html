@@ -1,0 +1,66 @@
+<div class="container_template">
+  
+  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" >
+    <section class="section_img_form">
+      <div class="box_img"><ion-icon name="person"></ion-icon></div>
+    </section>
+    <section class="section_content_form">
+      <!-- NOMBRE -->
+      <div class="box_input">
+        <label for="name">Name:</label>
+        <input 
+          [(ngModel)]="fname" 
+          type="text" name="name" id="name" placeholder="Your Name" required=""
+        >
+      </div>
+      <!-- PASSWORD -->
+      <div class="box_input">
+        <label for="pwd">Password:</label>
+        <input 
+          [(ngModel)]="pwd" required=""
+          type="password" name="pwd" id="pwd" placeholder="Your Password"
+        >
+      </div>
+      <!-- SELECCION DE ROL -->
+      <div class="box_input">
+        <label for="rol">Rol:</label>
+        <select [(ngModel)]="rol" name="rol" id="rol" #mySelect="ngModel" required="">
+
+          <option value="" disabled selected>Selecione Rol</option>
+          <option *ngFor="let rol of roles" [value]="rol">{{rol}}</option>
+        </select>
+        
+        <div class="message_error" *ngIf="mySelect.invalid && mySelect.touched">
+          <span>&#9888;</span>Debes Seccionar un opcion
+        </div>
+        
+      </div>
+      <!-- Forma 2 -->
+<!--       <div class="box_input">
+        <select [(ngModel)]="selectedValue" name="select">
+          <option value="" selected>Roles</option>
+          <option value="frontend">Front-End</option>
+          <option value="backend">Back-End</option>
+          <option value="fullstack">Full-Stack</option>
+        </select>
+      </div> -->  
+        <!-- Mostrar el estado del control -->
+      <div>
+        <p>Invalid: {{ mySelect.invalid }}</p>
+        <p>Touched: {{ mySelect.touched }}</p>
+        <p>Valid: {{ mySelect.valid }}</p>
+        <p>Pristine: {{ mySelect.pristine }}</p>
+        <p>Dirty: {{ mySelect.dirty }}</p>
+      </div>
+      <!-- Boton para enviar -->
+      
+      <button class="btn_send" type="submit" [disabled]="myForm.invalid">
+        Enviar
+      </button>
+    </section>
+    
+    <div class="showMessage"> Data:{{showMessage | json}}</div>
+
+  </form>
+
+</div>

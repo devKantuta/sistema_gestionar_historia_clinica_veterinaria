@@ -1,0 +1,35 @@
+
+<main class="container_main">
+  <!-- <app-nav  *ngIf="getUSer?.status"></app-nav> -->
+  <router-outlet></router-outlet>
+
+
+
+  
+  <div *ngIf="!isLoggedIn">
+    <!-- Componente de login -->
+    <!-- <app-login (submit)="onLoginSubmit()"></app-login> -->
+    
+    
+  </div>
+
+  <div *ngIf="isLoggedIn">
+    <!-- Componente del dashboard -->
+  <!--   <app-nav></app-nav>
+    <router-outlet></router-outlet> -->
+  </div>
+
+  
+
+
+
+
+
+</main>
+
+
+<!-- 
+  c controlado. Tiene q tener experiencia
+  - si proyecto es innovador la dificultad sera grande
+  - Si el proyecto es grande(ERP,CMR) 
+ -->

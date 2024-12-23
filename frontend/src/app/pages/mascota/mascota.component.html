@@ -1,0 +1,232 @@
+<app-nav></app-nav>
+<section class="container_gral">
+  
+  <div class="container_raza">
+    <!-- FORMULARIO DE NEW o ADD -->
+    <div class="container_new_raza" *ngIf="onShowComponentRaza">
+      <button type="button" class="btn_close" (click)="closeForm()" >X</button>
+      <h2 class="title_new_raza">Agregar Mascota</h2>
+
+      <form class="form_raza" [formGroup]="formNewData" (ngSubmit)="submitDataForm()">
+
+        <div class=" box_input">
+          <label for="nombre">Nombre</label>
+          <input type="text"  id="nombre" formControlName="nombre" >
+        </div>
+
+        <div class=" box_input">
+          <label for="fecha_reg"><nav>Fecha Nacimiento</nav></label>
+          <input type="date"  id="fecha_reg" formControlName="fecha_reg" >
+        </div>
+
+        <!-- <div class=" box_input">
+          <label for="edad">Edad</label>
+          <input type="text"  id="edad" formControlName="edad" >
+        </div> -->
+
+        <div class=" box_input">
+          <label for="color"><nav>Color</nav></label>
+          <input type="text"  id="color" formControlName="color" >
+        </div>
+        
+        <div class=" box_input box_select">
+          <label for="cliente">Cliente:</label>
+          <select name="cliente" id="cliente" formControlName="id_cliente">
+            <option value=""  disabled [selected]="ok" >seleccione</option>
+            <option value="{{client.id}}" *ngFor="let client of listaCLientes" >
+              {{client.nombre}}
+            </option>
+          </select>
+        </div>
+
+        <div class=" box_input box_select">
+          <label for="raza">Raza:</label>
+          <select name="raza" id="raza" formControlName="id_raza">
+            <option value=""  disabled [selected]="ok" >seleccione</option>
+            <option value="{{raza.id}}" *ngFor="let raza of listaRazas" >
+              {{raza.nombre}}
+            </option>
+          </select>
+        </div>
+
+        <div class=" box_input box_select">
+          <label for="id_especie">Especie:</label>
+          <select name="id_especie" id="id_especie" formControlName="id_especie">
+            <option value=""  disabled [selected]="ok" >seleccione</option>
+            <option value="{{especie.id}}" *ngFor="let especie of listaEspecies" >
+              {{especie.nombre}}
+            </option>
+          </select>
+        </div>
+
+        <div class=" box_input box_select">
+          <label for="sexo">Sexo:</label>
+          <select name="sexo" id="sexo" formControlName="sexo">
+            <option value=""  disabled [selected]="ok" >seleccione</option>
+            <option value="hembra">Hembra</option>
+            <option value="macho">Macho</option>
+          </select>
+        </div>
+        <!-- Validaciones de los campos -->
+        <div class="message_error" 
+        [hidden]="(id_cliente?.valid || id_cliente?.pristine) && 
+                  (id_raza?.valid ||id_raza?.pristine)&&
+                  (nombre?.valid ||nombre?.pristine)&&
+                  (sexo?.valid ||sexo?.pristine)&&
+                  (fecha_reg?.valid ||fecha_reg?.pristine)&&
+                  (id_especie?.valid ||id_especie?.pristine)&&
+                  (color?.valid ||color?.pristine)
+                  ">
+          Rellene todos los campos🧐..!
+        </div>
+  
+        <button type="submit" class="btn btn-primary btn_new_raza" [disabled]="formNewData.invalid">
+          Guardar
+        </button>
+      </form>
+    
+    </div>
+    <!-- FORM TO UPDATE RAZA -->
+    <div class="container_new_raza" *ngIf="showUpdateComponent">
+      <button type="button" class="btn_close" (click)="closeFormRazaUpdate()" >X</button>
+      <h2 class="title_new_raza">Editar Mascota</h2>
+
+      <form class="form_raza" [formGroup]="formNewData" (ngSubmit)="submitUpdateData()">
+        
+        <div class=" box_input">
+          <label for="nombre">Nombre</label>
+          <input type="text"  id="nombre" formControlName="nombre" >
+        </div>
+
+        <div class=" box_input">
+          <label for="color"><nav>Color</nav></label>
+          <input type="text"  id="color" formControlName="color" >
+        </div>
+        <div class=" box_input">
+          <label for="fecha_reg">Fecha Nacimiento</label>
+          <input type="date"  id="fecha_reg" formControlName="fecha_reg" >
+        </div>
+
+        <div class=" box_input box_select">
+          <label for="cliente">Cliente:</label>
+          <select name="cliente" id="cliente" formControlName="id_cliente">
+            <option value=""  disabled [selected]="ok" >seleccione</option>
+            <option value="{{client.id}}" *ngFor="let client of listaCLientes" >
+              {{client.nombre}}
+            </option>
+          </select>
+        </div>
+
+        <div class=" box_input box_select">
+          <label for="raza">Raza:</label>
+          <select name="raza" id="raza" formControlName="id_raza">
+            <option value=""  disabled [selected]="ok" >seleccione</option>
+            <option value="{{raza.id}}" *ngFor="let raza of listaRazas" >
+              {{raza.nombre}}
+            </option>
+          </select>
+        </div>
+
+        <div class=" box_input box_select">
+          <label for="id_especie">Especie:</label>
+          <select name="id_especie" id="id_especie" formControlName="id_especie">
+            <option value=""  disabled [selected]="ok" >seleccione</option>
+            <option value="{{especie.id}}" *ngFor="let especie of listaEspecies" >
+              {{especie.nombre}}
+            </option>
+          </select>
+        </div>
+
+        <div class=" box_input box_select">
+          <label for="sexo">Sexo:</label>
+          <select name="sexo" id="sexo" formControlName="sexo">
+            <option value=""  disabled [selected]="ok" >seleccione</option>
+            <option value="hembra">Hembra</option>
+            <option value="macho">Macho</option>
+          </select>
+        </div>
+        <!-- Validaciones de los campos -->
+        <div class="message_error" 
+        [hidden]="(id_cliente?.valid || id_cliente?.pristine) && 
+                  (id_raza?.valid ||id_raza?.pristine)&&
+                  (nombre?.valid ||nombre?.pristine)&&
+                  (sexo?.valid ||sexo?.pristine)&&
+                  (fecha_reg?.valid ||fecha_reg?.pristine)&&
+                  (id_especie?.valid ||id_especie?.pristine)&&
+                  (color?.valid ||color?.pristine)
+                  ">
+          Rellene todos los campos🧐..!
+        </div>
+  
+        <button type="submit" class="btn btn-primary btn_new_raza" [disabled]="formNewData.invalid">
+          Guardar
+        </button>
+      </form>
+    
+    </div>
+
+    <!-- CONTENIDO DE LA TABLA -->
+    <div class="content_raza">
+      <div class="box_search">
+        <!-- BOTON ADD -->
+        <button class="btn btn_add" (click)="btnAddData()">Agregar</button>
+        <!-- CONTENIDO DEL INPUT SEARCH -->
+        <div class="search">
+          <input class="form-control input_search" 
+            type="search" 
+            placeholder="Search" 
+            aria-label="Search"
+            [(ngModel)]="textSearch"
+          >
+          <ion-icon name="search" class="icon"></ion-icon>
+        </div>
+      </div>
+
+      <h2 class="title_raza">MASCOTAS</h2>
+      
+      <table class="table-bordered  table">
+        <!-- Encabezado de la tabla -->
+          <thead class="table_head">
+            <tr>
+              <th scope="col" class="th_id">#</th>
+              <th scope="col" class="th_id">Cliente</th>
+              <th scope="col" class="th_id">Raza</th>
+              <th scope="col" class="th_id">Nombre</th>
+              <th scope="col" class="th_id">Edad</th>
+              <th scope="col" class="th_id">Sexo</th>
+              <th scope="col" class="th_id">Color</th>
+              <th scope="col" class="th_id">Fecha Nac</th>
+              <th scope="col" class="th_id">Especie</th>
+              <th scope="col" class="th_id">Setting</th>
+            </tr>
+          </thead>
+          <!-- Cuerpo de la tabla -->
+          <tbody >
+            <tr *ngFor="let data of listData | filter:textSearch" >
+              <th scope="row" class="th_id_1">{{data.id}}0AD</th>
+              <td colspan="1" class="td_row">{{data.cliente}}</td>
+              <td colspan="1" class="td_row">{{data.raza}}</td>
+              <td colspan="1" class="td_row">{{data.nombre}}</td>
+              <td colspan="1" class="td_row">{{data.edad}}</td>
+              <td colspan="1" class="td_row">{{data.sexo}}</td>
+              <td colspan="1" class="td_row">{{data.color}}</td>
+              <td colspan="1" class="td_row">{{data.fecha_reg | date:"shortDate"}}</td>
+              <td colspan="1" class="td_row">{{data.especie}}</td>
+              
+              <td class="box_btn">
+                <button class="btn btn_reload" (click)="btnUpdateDataIcon(data)">
+                  <ion-icon name="sync"></ion-icon>
+                </button>
+                <button class="btn btn_red" (click)="deleteDataTable(data.id)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+    
+  </div>
+
+
+</section>

@@ -1,0 +1,105 @@
+
+<div class=" message_api">{{resMessage}}</div>
+<div class="container">
+  <section class="container_form">
+      <input type="checkbox" name="flip" id="flip">
+      <div class="cover">
+        <div class="cover_front">
+          <img src="assets/images/portada_2.jpg" alt="loading..">
+        </div>
+      </div>
+
+      <!-- FORM LOGIN -->
+      <form [formGroup]="formLogin" (ngSubmit)="submitLogin()">
+        <div class="form_content">
+  
+          <div class="login_form">
+            <div class="title">Login</div>
+            
+            <div class="inputs_box">
+              <!-- Email -->
+              <div class="input_box">
+                <ion-icon name="mail"></ion-icon>
+                <input type="email" formControlName="email" placeholder="correo@gmail.com" >
+              </div>
+              <!-- Error Email -->
+              <div class="message_error" [hidden]="email.valid || email.pristine">
+                <span *ngIf="email.errors?.['requerid']">El email es Obligatorio..!</span>
+                <span *ngIf="email.errors?.['email']">El email No valido..!</span>
+              </div>
+              <!-- Password -->
+              <div class="input_box">
+                <ion-icon name="lock-closed"></ion-icon>
+                <input type="password" formControlName="password" placeholder="Password">
+              </div>
+              <!-- Error Password -->
+              <div class="message_error" [hidden]="password?.valid || password?.pristine">
+                La contraseña es obligatoria..!
+              </div>
+
+              <div class="text">
+                <a  class="link_forgot" (click)="testBtn()">¿Has olvidado tu Contraseña?</a>
+              </div>
+              <!-- boton Enviar -->
+              <div class="input_box btn_form_send" >
+                  <input type="submit"  value="Enviar" [disabled]="formLogin.invalid">
+              </div>
+    
+              <div class="text">¿No tienes una cuenta?
+                <label for="flip">Registrate</label>
+              </div>
+    
+            </div>
+          </div>
+        </div><!-- form_content -->
+      </form>
+      <!-- FORM SIGNUP -->
+      <form [formGroup]="formSignup" (ngSubmit)="submitSignup()">
+        <div class="form_content">
+          
+          <div class="signup_form">
+            <div class="title">Signup</div>
+            <div class="inputs_box">
+              <!-- username -->
+              <div class="input_box">
+                <ion-icon name="person"></ion-icon>
+                <input type="text"  placeholder="Ingrese Nombre" formControlName="username">
+              </div>
+              <div class="message_error" [hidden]="username?.valid || username?.pristine">
+                El nombre es Obligatorio..!
+              </div>
+              <!-- email -->
+              <div class="input_box">
+                <ion-icon name="mail"></ion-icon>
+                <input type="email"  placeholder="correo@gmail.com" formControlName="email2">
+              </div>
+              <div class="message_error" [hidden]="email2.valid || email2.pristine">
+                <span *ngIf="email2.errors?.['requerid']" >Ingrese un correo..!</span>
+
+                <span *ngIf="email2.errors?.['email']">El correo No es valido..!</span>
+              </div>
+              <!-- password -->
+              <div class="input_box">
+                <ion-icon name="lock-closed"></ion-icon>
+                <input type="password"  placeholder="Password" formControlName="password2">
+              </div>
+              <!-- boton enviar o submit -->
+              <div class="input_box btn_form_send">
+                <input type="submit" value="Enviar" [disabled]="formSignup.invalid">
+              </div>
+    
+              <div class="text">¿Ya tienes una cuenta? 
+                <label for="flip">Inicia sesión</label>
+              </div>
+    
+            </div>
+          </div>
+
+        </div>
+      </form>
+      <!-- {{formLogin.value | json}} -->
+      <!-- <app-signup profesion="{{rol}}" (aPadreEvent)="getDataHijo($event)"></app-signup>
+      <p>{{newValor}}</p> -->
+      
+  </section>
+</div>

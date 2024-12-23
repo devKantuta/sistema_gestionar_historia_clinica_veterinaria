@@ -1,0 +1,5 @@
+/server/migrations
+/node_modules
+.env
+index.html
+README.md

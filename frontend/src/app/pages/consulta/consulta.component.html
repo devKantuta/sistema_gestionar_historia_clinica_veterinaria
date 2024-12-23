@@ -1,0 +1,270 @@
+<app-nav></app-nav>
+<section class="container_gral">
+  
+  <div class="container_raza">
+    <!-- FORMULARIO DE NEW o ADD -->
+    <div class="container_new_raza" *ngIf="onShowComponentRaza">
+      <button type="button" class="btn_close" (click)="closeForm()" >X</button>
+      <h2 class="title_new_raza">Nueva Consulta</h2>
+
+      <form class="form_raza" [formGroup]="formNewData" (ngSubmit)="submitDataForm()">
+       <!-- id_hc | id_empleado -->
+        
+          <!-- Ficha media -->
+          <div class=" box_input">
+            <label for="id_hc">Ficha Medica:</label>
+            <select name="id_hc" id="id_hc" formControlName="id_hc">
+              <option value=""  disabled [selected]="ok" >seleccione</option>
+              <option value="{{hClinico.id}}" *ngFor="let hClinico of listaHistorilaCli" >
+                {{hClinico.cliente}} ➡ mascota◾{{hClinico.mascota}} 
+              </option>
+            </select>
+          
+  
+          <div class=" box_input">
+            <label for="empleado">Verianrio:</label>
+            <select name="empleado" id="empleado" formControlName="id_empleado">
+              <option value=""  disabled [selected]="ok" >seleccione</option>
+              <option value="{{empleado.id}}" *ngFor="let empleado of listaEmpleados" >
+                {{empleado.nombre}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="content_box">
+          <div class=" box_input">
+            <label for="fecha_reg">Fecha:</label>
+            <input type="date"  id="fecha_reg" formControlName="fecha_reg" >
+          </div>
+  
+          <div class=" box_input">
+            <label for="peso">Peso(Kg):</label>
+            <input type="text"  id="peso" formControlName="peso" >
+          </div>
+
+        </div>
+        <!-- temperatura | motivo -->
+        <div class="content_box">
+          <div class=" box_input">
+            <label for="temperatura">Temperatura(°C):</label>
+            <input type="text"  id="temperatura" formControlName="temperatura" >
+          </div>
+          <div class=" box_input">
+            <label for="motivo">Motivo:</label>
+            <!-- <input type="tex"  id="motivo" formControlName="motivo" > -->
+            <textarea name="motivo" id="motivo" cols="30" rows="1" formControlName="motivo"></textarea>
+          </div>
+          
+        </div>
+        <!-- diagnostico | tratamiento -->
+        <div class="content_box">
+          <div class=" box_input">
+            <label for="diagnostico">Diagnostico:</label>
+            <textarea name="diagnostico" id="diagnostico" cols="30" rows="5" formControlName="diagnostico"></textarea>
+          </div>
+          <div class=" box_input">
+            <label for="tratamiento">Tratamiento:</label>
+            <textarea name="tratamiento" id="tratamiento" cols="30" rows="5" formControlName="tratamiento"></textarea>
+          </div>
+        </div>
+        
+        <div class=" box_input">
+          <label for="precio" class="text_label">Costo  de la  Consulta:</label>
+          <input type="number"  id="precio" formControlName="precio" >
+        </div>
+        
+        
+
+        <!-- Validaciones de los campos -->
+        <div class="message_error" 
+        [hidden]="(id_hc?.valid || id_hc?.pristine) && 
+                  (id_empleado?.valid ||id_empleado?.pristine)&&
+                  (fecha_reg?.valid ||fecha_reg?.pristine)&&
+                  (peso?.valid ||peso?.pristine)&&
+                  (temperatura?.valid ||temperatura?.pristine)&&
+                  (motivo?.valid ||motivo?.pristine)&&
+                  (diagnostico?.valid ||diagnostico?.pristine)&&
+                  (tratamiento?.valid ||tratamiento?.pristine)&&
+                  (precio?.valid ||precio?.pristine)
+                  
+                  ">
+          Rellene todos los campos🧐..!
+        </div>
+  
+        <button type="submit" class="btn btn-primary btn_new_raza" [disabled]="formNewData.invalid">
+          Guardar
+        </button>
+      </form>
+    
+    </div>
+    <!-- FORM TO UPDATE RAZA -->
+    <div class="container_new_raza" *ngIf="showUpdateComponent">
+      <button type="button" class="btn_close" (click)="closeFormRazaUpdate()" >X</button>
+      <h2 class="title_new_raza">Editar Consulta</h2>
+
+      <form class="form_raza" [formGroup]="formNewData" (ngSubmit)="submitUpdateData()">
+        <!-- id_hc | id_empleado -->
+       <!-- Ficha media -->
+          <div class=" box_input">
+            <label for="id_hc">Ficha Medica:</label>
+            <select name="id_hc" id="id_hc" formControlName="id_hc">
+              <option value=""  disabled [selected]="ok" >seleccione</option>
+              <option value="{{hClinico.id}}" *ngFor="let hClinico of listaHistorilaCli" >
+                {{hClinico.cliente}} ➡ mascota◾{{hClinico.mascota}} 
+              </option>
+            </select>
+          
+  
+          <div class=" box_input">
+            <label for="empleado">Verianrio:</label>
+            <select name="empleado" id="empleado" formControlName="id_empleado">
+              <option value=""  disabled [selected]="ok" >seleccione</option>
+              <option value="{{empleado.id}}" *ngFor="let empleado of listaEmpleados" >
+                {{empleado.nombre}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="content_box">
+          <div class=" box_input">
+            <label for="fecha_reg">Fecha:</label>
+            <input type="date"  id="fecha_reg" formControlName="fecha_reg" >
+          </div>
+  
+          <div class=" box_input">
+            <label for="peso">Peso(Kg):</label>
+            <input type="text"  id="peso" formControlName="peso" >
+          </div>
+
+        </div>
+        <!-- temperatura | motivo -->
+        <div class="content_box">
+          <div class=" box_input">
+            <label for="temperatura">Temperatura(°C):</label>
+            <input type="text"  id="temperatura" formControlName="temperatura" >
+          </div>
+          <div class=" box_input">
+            <label for="motivo">Motivo:</label>
+            <!-- <input type="tex"  id="motivo" formControlName="motivo" > -->
+            <textarea name="motivo" id="motivo" cols="30" rows="1" formControlName="motivo"></textarea>
+          </div>
+          
+        </div>
+        <!-- diagnostico | tratamiento -->
+        <div class="content_box">
+          <div class=" box_input">
+            <label for="diagnostico">Diagnostico:</label>
+            <textarea name="diagnostico" id="diagnostico" cols="30" rows="5" formControlName="diagnostico"></textarea>
+          </div>
+          <div class=" box_input">
+            <label for="tratamiento">Tratamiento:</label>
+            <textarea name="tratamiento" id="tratamiento" cols="30" rows="5" formControlName="tratamiento"></textarea>
+          </div>
+        </div>
+        
+        <div class=" box_input">
+          <label for="precio" class="text_label">Costo  de la  Consulta:</label>
+          <input type="number"  id="precio" formControlName="precio" >
+        </div>
+        
+        
+
+        <!-- Validaciones de los campos -->
+        <div class="message_error" 
+        [hidden]="(id_hc?.valid || id_hc?.pristine) && 
+                  (id_empleado?.valid ||id_empleado?.pristine)&&
+                  (fecha_reg?.valid ||fecha_reg?.pristine)&&
+                  (peso?.valid ||peso?.pristine)&&
+                  (temperatura?.valid ||temperatura?.pristine)&&
+                  (motivo?.valid ||motivo?.pristine)&&
+                  (diagnostico?.valid ||diagnostico?.pristine)&&
+                  (tratamiento?.valid ||tratamiento?.pristine)&&
+                  (precio?.valid ||precio?.pristine)
+                  
+                  ">
+          Rellene todos los campos🧐..!
+        </div>
+
+        <button type="submit" class="btn btn-primary btn_new_raza" [disabled]="formNewData.invalid">
+          Guardar
+        </button>
+      </form>
+    
+    </div>
+
+    <!-- CONTENIDO DE LA TABLA -->
+    <div class="content_raza">
+      <div class="box_search">
+        <!-- BOTON ADD -->
+        <button class="btn btn_add" (click)="btnAddData()">Agregar</button>
+        <!-- CONTENIDO DEL INPUT SEARCH -->
+        <div class="search">
+          <input class="form-control input_search" 
+            type="search" 
+            placeholder="Search" 
+            aria-label="Search"
+            [(ngModel)]="textSearch"
+          >
+          <ion-icon name="search" class="icon"></ion-icon>
+        </div>
+      </div>
+
+      <h2 class="title_raza">CONSULTAS</h2>
+  
+      <table class="table table-bordered">
+        <!-- Encabezado de la tabla -->
+          <thead class="table_head">
+            <tr>
+              
+              <th scope="col" class="th_id">Fecha</th>
+              <th scope="col" class="th_id">Cliente</th>
+              <th scope="col" class="th_id">Mascota</th>
+              <th scope="col" class="th_id">Veterinario</th>  
+              <th scope="col" class="th_id">Peso(kg)</th>
+              <th scope="col" class="th_id">T.°C</th>
+              <th scope="col" class="th_id">Motivo</th>
+              <th scope="col" class="th_id">Diagnostico</th>
+              <th scope="col" class="th_id">Tratamiento</th>
+              <th scope="col" class="th_id">Precio(Bs)</th>
+              <th scope="col" class="th_id">Setting</th>
+            </tr>
+          </thead>
+          <!-- Cuerpo de la tabla -->
+          <tbody >
+            <tr *ngFor="let data of listData | filterMascota:textSearch" >
+              
+              <td colspan="1" class="td_row">{{data.fecha_reg | date:"shortDate"}}</td>
+              <td colspan="1" class="td_row">{{data.cliente}}</td>
+              <!-- <th colspan="1" class="td_row">{{data.mascota}} <br> edad:{{edadFechaNac(data.fecha_nac)}}</th> -->
+              <th colspan="1" class="td_row">{{data.mascota}} <br> edad:{{edadFechaNac_FechaCurrent(data.fecha_nac,data.fecha_reg)}}</th>
+              <td colspan="1" class="td_row">{{data.veterinario}}</td>
+              <td colspan="1" class="td_row">{{data.peso}}Kg</td>
+              <td colspan="1" class="td_row">{{data.temperatura}}°C</td>
+              <td colspan="1" class="td_row">{{data.motivo }}</td>
+              <td colspan="1" class="td_row">{{data.diagnostico}}</td>
+              <td colspan="1" class="td_row">{{data.tratamiento}}</td>
+              <td colspan="1" class="td_row">{{data.precio}}bs</td>
+              
+              <td class="box_btn">
+                <button class="btn btn_see_log" (click)=" printData(data)">
+                  <ion-icon name="document-text"></ion-icon> 
+                </button>
+                <button class="btn btn_reload" (click)="btnUpdateDataIcon(data)">
+                  <ion-icon name="sync"></ion-icon>
+                </button>
+                <button class="btn btn_red" (click)="deleteDataTable(data.id)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
+    
+  </div>
+
+</section>
